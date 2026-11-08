@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>毛孩每日照顧表 - 給 Max</title>
+<style>
+  *{box-sizing:border-box}
+  body{margin:0;font-family:-apple-system, "PingFang TC", "Microsoft JhengHei", sans-serif;background:#FFF8F0;color:#333;padding:20px 16px 40px}
+  .card{max-width:480px;margin:0 auto;background:#fff;border-radius:20px;overflow:hidden;box-shadow:0 8px 30px rgba(0,0,0,.08)}
+  .top{background:#2D2D2D;color:#fff;padding:22px 20px;text-align:center}
+  .top h1{margin:0;font-size:22px}
+  .top p{margin:8px 0 0;opacity:.8;font-size:14px}
+  .date{padding:16px 20px 0;text-align:center;font-weight:700}
+  .date input{font-size:16px;padding:6px 10px;border:1px solid #ddd;border-radius:10px}
+  .item{margin:16px 20px;padding:18px;border-radius:16px;border:2px solid #eee}
+  .item.done{border-color:#4CAF50;background:#F1F8E9}
+  .item h2{margin:0;font-size:18px}
+  .item p{margin:6px 0 0;line-height:1.6;font-size:14px;color:#666}
+  .tag{display:inline-block;font-size:12px;padding:3px 8px;border-radius:20px;background:#FFE0B2;margin-bottom:6px}
+  .tag.blue{background:#BBDEFB}
+  .tag.pink{background:#F8BBD0}
+  .tag.green{background:#C8E6C9}
+  .warn{margin:0 20px 16px;background:#FFF3E0;border-radius:12px;padding:14px;font-size:14px;line-height:1.7}
+  .warn b{color:#E65100}
+  .footer{text-align:center;font-size:12px;color:#999;padding:0 20px 20px}
+  button{width:calc(100% - 40px);margin:0 20px 16px;padding:14px;border:0;border-radius:12px;background:#FF7043;color:#fff;font-size:16px;font-weight:700}
+  .photo{width:100%;border-radius:14px;display:block;object-fit:cover;max-height:320px;background:#eee}
+  .caption{background:#FFF8E1;border-radius:12px;padding:12px;margin-top:10px;font-size:14px;line-height:1.9}
+  .caption.water{background:#E3F2FD}
+  .caption b{font-size:15px}
+  .check{display:flex;gap:10px;align-items:center;margin-top:12px;font-weight:700;font-size:15px}
+  .check input{width:24px;height:24px;accent-color:#4CAF50}
+</style>
+</head>
+<body>
+<div class="card">
+  <div class="top">
+    <h1>🐾 毛孩每日照顧表</h1>
+    <p>給 Max 看的 · 看照片 + 下面備註就好</p>
+  </div>
+
+  <div class="date">📅 日期：<input type="date" id="today"></div>
+
+  <!-- 藥 + 益生菌 -->
+  <div class="item" id="item1">
+    <span class="tag">💊 藥</span>
+    <h2>動物用藥錠 · 1 顆 / 天</h2>
+    <p>跟飯一起吃或飯後吃，跟益生菌隔 1-2 小時</p>
+    <label class="check"><input type="checkbox" onchange="document.getElementById('item1').classList.toggle('done',this.checked)"> 今天已餵藥</label>
+  </div>
+
+  <div class="item" id="item2">
+    <span class="tag blue">🥣 益生菌</span>
+    <h2>毛掌醫學 益生菌肉泥 · 1 包 / 天</h2>
+    <p>直接擠出來給牠舔，或拌一點點飼料</p>
+    <label class="check"><input type="checkbox" onchange="document.getElementById('item2').classList.toggle('done',this.checked)"> 今天已餵益生菌</label>
+  </div>
+
+  <!-- ===== 裝水那張照片 ===== -->
+  <div class="item" id="itemWater">
+    <span class="tag pink">💧 裝水的 · 看這張照片</span>
+    <h2>水杯配置</h2>
+    <!-- 👇 把你第一張 黑杯+小粉碗 的照片放在這裡，取代下面這行 -->
+    <img class="photo" src="water.jpg" alt="裝水的照片：黑色馬克杯放在粉色小碗裡">
+    <div class="caption water">
+      <b>📝 備註 - 裝水的：</b><br>
+      ⬆️ 上面：<b>黑色馬克杯</b> - 裝乾淨水<br>
+      ⬇️ 下面：<b>粉色小碗</b> (有小鴨子圖案) - 接溢出來的水<br>
+      <b>💧 水每天都要換新的</b><br>
+      舊水倒掉 → 杯子沖一下 → 裝新水<br>
+      小碗有水也一起倒掉擦乾
+    </div>
+    <label class="check"><input type="checkbox" onchange="document.getElementById('itemWater').classList.toggle('done',this.checked)"> 今天水已換新</label>
+  </div>
+
+  <!-- ===== 裝飼料那張照片 ===== -->
+  <div class="item" id="itemFood">
+    <span class="tag green">🍽️ 裝飼料的 · 看這張照片</span>
+    <h2>飼料配置</h2>
+    <!-- 👇 把你第二張 粉色大碗+米色底座 的照片放在這裡，取代下面這行 -->
+    <img class="photo" src="food.jpg" alt="裝飼料的照片：粉色大碗放在米色底座上">
+    <div class="caption">
+      <b>📝 備註 - 裝飼料的：</b><br>
+      ⬆️ 上面：<b>粉色大碗</b> - 裝飼料的<br>
+      ⬇️ 下面：<b>米色底座</b> - 墊高用，不要拿掉<br>
+      <b>⚠️ 飼料放很久都沒吃，直接倒掉換新的沒關係</b><br>
+      不要怕浪費，放久了不新鮮牠更不吃
+    </div>
+    <label class="check"><input type="checkbox" onchange="document.getElementById('itemFood').classList.toggle('done',this.checked)"> 今天飼料已檢查 / 已換新</label>
+  </div>
+
+  <div class="warn">
+    <b>⚠️ Max 不要搞混：</b><br>
+    黑杯 + 粉色小碗(小鴨子) = <b>喝水</b><br>
+    粉色大碗 + 米色底座 = <b>吃飯</b><br>
+    拉肚子變嚴重 / 一直吐 / 完全不吃，停餵馬上聯絡飼主
+  </div>
+
+  <button onclick="alert('已完成！記得明天再來一次 ❤️')">✅ 今天都做完了</button>
+  <div class="footer">PawMed KT-11 益生菌 · 效期 2028/03/11</div>
+</div>
+
+<script>
+  document.getElementById('today').valueAsDate = new Date();
+</script>
+</body>
+</html>
